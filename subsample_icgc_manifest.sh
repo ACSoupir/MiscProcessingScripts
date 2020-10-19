@@ -1,6 +1,7 @@
 #!/bin/bash
 source ~/.bash_profile
 
+# setting defaults for the non-required inputs
 threads=1
 reads_wanted=15000000
 delete=n
