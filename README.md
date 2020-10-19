@@ -16,3 +16,17 @@ ICGC requires application and granted access in order to get raw sequencing data
 TODO:
 * Add ability to *not* do `extractSoftclippedRetain` from terminal
 * Add selection for `fileType` for downloading non-sequencing data
+* Add ability to sample SAM files
+
+## Subsampling BAM files in current directory
+This is a script similar to that of the the one that works with downloading files from ICGC, but here no `manifest` is needed because it samples the BAM files that are in the folder which this script is run. Another difference between this script and the script for ICGC files is that extracting softclipped reads is not included. This script will run without any arguments because there are defaults set internally.
+
+The script takes in a couple arguments:
+* -t --threads are the number of threads that will be passed to samtools view to count and sample the large bam file. *Default is **1** thread*
+* -r --reads_wanted are the number of reads that are wanted in the output file. Some of the ICGC files have over 1 billion reads. *Default is **15000000** reads*
+* -d --delete is whether or not to delete the full downloaded ICGC file. *Default is **n***
+* -s --seed is the seed that samtools view will use when sampling bam file. This is important to maintain repeatability  *Default is **333***
+
+TODO:
+* Can add the ability to select whether or not to do `extractSoftclippedRetain`
+* Add ability to sample SAM files
