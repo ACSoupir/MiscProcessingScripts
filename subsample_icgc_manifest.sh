@@ -39,14 +39,17 @@ mkdir -p temp
 echo -e "Making ${red}clippedReads${reset} folder"
 mkdir -p clippedReads
 
+# extract the object-ids out of the ICGC manifest file - column 3
 cut -f3 ${manifest} > ids.txt
 tail -n +2 ids.txt > ids.tmp
 mv ids.tmp ids.txt
 
+# cut out the 3rd column adn remove the header named 'object_id'
 ids = $(cut -f3 ${manifest})
 remove=object_id
 ids_clean=${ids[@]/$remove}
 
+# running score-client download for list of object-ids
 for object_id in $ids_clean
 do
 	echo -e "Downloading ICGC object ID ${red}${object_id}${reset}..."
