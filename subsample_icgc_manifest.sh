@@ -1,10 +1,33 @@
 #!/bin/bash
-source ~/.bash_profile
+
+function Help() {
+   # Display Help
+   echo "This script is to help subsample bam files that are in the current folder based on the inputs below."
+   echo
+   echo "Syntax: bash subsample_bam_in_foldre.sh [-t|r|d|s]"
+   echo "options:"
+   echo "m     REQUIRED. Manifest file downloaded from ICGC with object-id in the 3rd column"
+   echo "t     Select number of threads to use with SAMTools. (default 1)"
+   echo "r     The number of reads desired in the output BAM file. (default 15000000"
+   echo "d     Whether or not to delete the original BAM file. (default (n)o)"
+   echo "s     Seed used to subsampling (reproducible). (default 333)"
+   echo
+}
 
 threads=1
 reads_wanted=15000000
 delete=n
 seed=333
+
+if [ "$1" = "--help" ] ; then
+	Help
+	exit 0
+fi
+
+if [ "$1" = "-h" ] ; then
+	Help
+	exit 0
+fi
 
 # inputs
 while getopts t:r:d:s:m: flag
