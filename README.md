@@ -2,6 +2,9 @@
 # MiscProcessingScripts
 Miscellaneous scripts written to help dealing with big data
 
+## Downloading
+In WSL or linux terminal, `git clone https://github.com/ACSoupir/MiscProcessingScripts.git`.
+
 ## ICGC Subsampling of Whole Genome Sequencing BAM
 Recently I have been working with trying to use some data from ICGC and have found that the size of the files is much too big to store locally on our workstation computers. To deal with this problem, I wrote a script to use the ICGC [score-client](https://docs.icgc.org/download/guide/) and [extractSoftclipped](https://github.com/dpryan79/SE-MEI).
 The script takes in a couple arguments:
