@@ -7,6 +7,7 @@ read reads_wanted
 echo "delete original?"
 read delete
 
+(
 if [ "$delete" != "${delete#[Yy]}" ]
 then
 	echo "deleting files"
@@ -34,7 +35,7 @@ do
 	
 	echo "Sampling ${file} to ${reads_wanted} reads with seed '333'..."
 	echo -e "\tRunning 'samtools view -b -@ ${threads} -s 333${ratio} -o Subsample/${reads_wanted}.${file} ${file}'"
-	samtools view -@ ${threads} -bs 333${ratio} -o Subsample/${reads_wanted}.${file} ${file}
+	samtools view -@ ${threads} -bs 123${ratio} -o Subsample/${reads_wanted}.${file} ${file}
 	sampled_reads=$(samtools view -c -@ ${threads} Subsample/${reads_wanted}.${file})
 	echo -e "\tFinished sampling ${file} to ${sampled_reads}."
 	echo -e "\tNew file has ${sampled_reads}\n"
@@ -48,3 +49,4 @@ do
 		echo "You stated you DONT WANT to delete the file"
 	fi
 done
+) | tee test.log
