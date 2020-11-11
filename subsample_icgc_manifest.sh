@@ -11,7 +11,7 @@ while getopts t:r:d:s:m: flag
 do
 	case "${flag}" in
 		t) threads=${OPTARG};;
-		r) reads_wanted =${OPTARG};;
+		r) reads_wanted=${OPTARG};;
 		d) delete=${OPTARG};;
 		s) seed=${OPTARG};;
 		m) manifest=${OPTARG};;

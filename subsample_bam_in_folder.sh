@@ -1,18 +1,33 @@
 #!/bin/bash
 
-echo "enter number of threads"
-read threads
-echo "enter number of reads in output"
-read reads_wanted
-echo "delete original?"
-read delete
+threads=1
+reads_wanted=5000000
+delete=n
+seed=333
+
+# inputs
+while getopts t:r:d:s: flag
+do
+	case "${flag}" in
+		t) threads=${OPTARG};;
+		r) reads_wanted=${OPTARG};;
+		d) delete=${OPTARG};;
+		s) seed=${OPTARG};;
+	esac
+done
 
 (
 if [ "$delete" != "${delete#[Yy]}" ]
 then
 	echo "deleting files"
+	echo "${threads} threads"
+	echo "seed ${seed}"
+	echo "${reads_wanted} final reads wanted"
 else
 	echo "keeping files"
+	echo "${threads} threads"
+	echo "seed ${seed}"
+	echo "${reads_wanted} final reads wanted"
 fi
 
 echo -e "Sampling BAM files in current dirctory\nto ${reads_wanted} reads with ${threads} threads...\n"
@@ -33,9 +48,9 @@ do
 	ratio=$(echo "scale=5;${reads_wanted}/${total_reads}" | bc)
 	echo -e "\tThis is a sample ratio of 0${ratio} for ${reads_wanted} reads.\n"
 	
-	echo "Sampling ${file} to ${reads_wanted} reads with seed '333'..."
-	echo -e "\tRunning 'samtools view -b -@ ${threads} -s 333${ratio} -o Subsample/${reads_wanted}.${file} ${file}'"
-	samtools view -@ ${threads} -bs 123${ratio} -o Subsample/${reads_wanted}.${file} ${file}
+	echo "Sampling ${file} to ${reads_wanted} reads with seed '${seed}'..."
+	echo -e "\tRunning 'samtools view -b -@ ${threads} -s ${seed}${ratio} -o Subsample/${reads_wanted}.${file} ${file}'"
+	samtools view -@ ${threads} -bs ${seed}${ratio} -o Subsample/${reads_wanted}.${file} ${file}
 	sampled_reads=$(samtools view -c -@ ${threads} Subsample/${reads_wanted}.${file})
 	echo -e "\tFinished sampling ${file} to ${sampled_reads}."
 	echo -e "\tNew file has ${sampled_reads}\n"
