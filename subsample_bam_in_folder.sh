@@ -1,22 +1,22 @@
-##!/bin/bash
+#!/bin/bash
 
-echo "Enter number of threads to use:"
+echo "enter number of threads"
 read threads
-echo "Enter number of reads wanted in output file:"
+echo "enter number of reads in output"
 read reads_wanted
-echo "Delete original files?"
+echo "delete original?"
 read delete
 
 if [ "$delete" != "${delete#[Yy]}" ]
 then
-	echo -e "You stated you DO WANT to delete the file"
+	echo "deleting files"
 else
-	echo -e "You stated you DONT WANT to delete the file"
+	echo "keeping files"
 fi
 
 echo -e "Sampling BAM files in current dirctory\nto ${reads_wanted} reads with ${threads} threads...\n"
 
-echo -e "Making 'Subsample' directory"
+echo "Making 'Subsample' directory"
 mkdir -p Subsample
 
 FULL_BAMS=*.bam
@@ -41,10 +41,10 @@ do
 	
 	if [ "$delete" != "${delete#[Yy]}" ]
 	then
-		echo -e "Deleting ${file}..."
-		echo -e "rm is commented to prevented deleting of files"
+		echo "Deleting ${file}..."
+		echo "rm is commented to prevented deleting of files"
 		# rm ${file}
 	else
-		echo -e "You stated you DONT WANT to delete the file"
+		echo "You stated you DONT WANT to delete the file"
 	fi
 done
