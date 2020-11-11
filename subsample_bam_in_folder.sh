@@ -49,4 +49,4 @@ do
 		echo "You stated you DONT WANT to delete the file"
 	fi
 done
-) | tee test.log
+) | tee Subsampling_BAM_in_Folder.log

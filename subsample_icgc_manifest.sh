@@ -17,7 +17,7 @@ do
 		m) manifest=${OPTARG};;
 	esac
 done
-
+(
 # colors 
 red=`tput setaf 1`
 green=`tput setaf 2`
@@ -83,7 +83,7 @@ do
 		fi
 	done	
 done
-
+) | ICGC_Download_Subsampling.log
 rm ids.txt
 
 : '
