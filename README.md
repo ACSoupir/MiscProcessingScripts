@@ -33,3 +33,7 @@ The script takes in a couple arguments:
 TODO:
 * Can add the ability to select whether or not to do `extractSoftclippedRetain`
 * Add ability to sample SAM files
+
+## Things to Add to Both
+* Check if the "subsampled" file is the same as the original and repeat sampling with new seed.
+* Add ability to change log file name from default
