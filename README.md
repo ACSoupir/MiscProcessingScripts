@@ -6,7 +6,7 @@ Miscellaneous scripts written to help dealing with big data
 In WSL or linux terminal, `git clone https://github.com/ACSoupir/MiscProcessingScripts.git`.
 
 ## ICGC Subsampling of Whole Genome Sequencing BAM
-Recently I have been working with trying to use some data from ICGC and have found that the size of the files is much too big to store locally on our workstation computers. To deal with this problem, I wrote a script to use the ICGC [score-client](https://docs.icgc.org/download/guide/) and [extractSoftclipped](https://github.com/dpryan79/SE-MEI).
+Recently we have been working with trying to use some data from ICGC and we have found that the size of the files are much too large to store locally on our workstation computers. To deal with this problem, I wrote a script to use the ICGC [score-client](https://docs.icgc.org/download/guide/) and [extractSoftclipped](https://github.com/dpryan79/SE-MEI).
 The script takes in a couple arguments:
 * -t --threads are the number of threads that will be passed to samtools view to count and sample the large bam file. *Default is **1** thread*
 * -r --reads_wanted are the number of reads that are wanted in the output file. Some of the ICGC files have over 1 billion reads. *Default is **15000000** reads*
